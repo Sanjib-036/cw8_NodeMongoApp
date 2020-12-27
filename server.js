@@ -20,7 +20,9 @@ app.get('/article/form', function (request, response) {
     // console.log(request)
     response.sendFile(__dirname + '/form.html')
 });
-var articles = [];
+var articles = [{ title: 'test', content: 'test' },
+{ title: 'test1', content: 'test1' },
+{ title: 'test2', content: 'test2' }];
 app.post('/article/new', function (request, response) {
     //console.log('post request');
 
@@ -33,11 +35,23 @@ app.post('/article/new', function (request, response) {
     }
     else {
         response.status(400).json({
-            msg: 'No title Added'
+            msg: 'No name Added'
         });
     }
 
 
+})
+
+app.get('/article/:id', function (request, response) {
+    console.log(request.params.id);
+    response.render('article.ejs', {
+        article: articles[request.params.id]
+    })
+})
+app.get('/articles/all', function (request, response) {
+    response.render('secondArticle.ejs', {
+        articles: articles
+    })
 })
 
 server.listen(process.env.PORT || 3000,
