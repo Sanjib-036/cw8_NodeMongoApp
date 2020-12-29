@@ -10,7 +10,7 @@
 <body>
     <h1>Form Submission</h1>
 
-    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="title" placeholder="Name">
     <input type="text" id="content" placeholder="content">
     <button id="save">Submit</button>
 
@@ -19,7 +19,7 @@
     <script>
         $('#save').click(function () {
             let user = {
-                name: $('#name').val(),
+                title: $('#title').val(),
                 content: $('#content').val()
             }
             console.log('New User', user);
