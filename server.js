@@ -32,9 +32,10 @@ app.get('/article/form', function (request, response) {
     // console.log(request)
     response.sendFile(__dirname + '/form.html')
 });
-var articles = [{ title: 'test', content: 'test' },
-{ title: 'test1', content: 'test1' },
-{ title: 'test2', content: 'test2' }];
+// var articles = [{ title: 'test', content: 'test' },
+// { title: 'test1', content: 'test1' },
+// { title: 'test2', content: 'test2' }];
+var articles = [];
 app.post('/article/new', function (request, response) {
     //console.log('post request');
     var newArticle = new Article(request.body)
@@ -66,11 +67,15 @@ app.post('/article/new', function (request, response) {
 })
 
 app.get('/article/:id', function (request, response) {
-    console.log(request.params.id);
-    response.render('article.ejs', {
-        article: articles[request.params.id]
+    Article.findById(request.params.id, function (err, data) {
+        response.render('article.ejs', {
+            article: data
+        })
+
     })
+
 })
+
 app.get('/articles/all', function (request, response) {
     Article.find({}, function (err, data) {
         response.render('secondArticle.ejs', {
