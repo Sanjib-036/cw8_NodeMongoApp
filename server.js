@@ -89,7 +89,7 @@ app.get('/articles/all', function (request, response) {
     // })
 })
 
-server.listen(process.env.PORT || 8000,
+server.listen(process.env.PORT || 3000,
     process.env.IP || 'localhost', function () {
         console.log('Server running');
     })
